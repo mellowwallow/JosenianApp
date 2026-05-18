@@ -28,10 +28,10 @@ export class HomePage implements OnInit, OnDestroy {
   private chatUnsubscribe: (() => void) | null = null;
 
   dashboardCards = [
-    { id: 1, title: 'My Department', shortLabel: 'Dept',     icon: 'business-outline',  value: 'â€”', description: 'Department members',  color: 'primary'   },
-    { id: 2, title: 'My Network',    shortLabel: 'Network',  icon: 'people-outline',    value: 'â€”', description: 'Connections',         color: 'secondary' },
-    { id: 3, title: 'History',       shortLabel: 'Events',   icon: 'time-outline',      value: 'â€”', description: 'Events attended',     color: 'tertiary'  },
-    { id: 4, title: 'Feeds',         shortLabel: 'Posts',    icon: 'newspaper-outline', value: 'â€”', description: 'Your posts',          color: 'success'   },
+    { id: 1, title: 'My Department', shortLabel: 'Dept',     icon: 'business-outline',  value: '—', description: 'Department members',  color: 'primary'   },
+    { id: 2, title: 'My Network',    shortLabel: 'Network',  icon: 'people-outline',    value: '—', description: 'Connections',         color: 'secondary' },
+    { id: 3, title: 'History',       shortLabel: 'Events',   icon: 'time-outline',      value: '—', description: 'Events attended',     color: 'tertiary'  },
+    { id: 4, title: 'Feeds',         shortLabel: 'Posts',    icon: 'newspaper-outline', value: '—', description: 'Your posts',          color: 'success'   },
   ];
 
   get greeting(): string {

@@ -113,7 +113,7 @@
               <ion-icon name="book-outline"></ion-icon>
               {{ dept.courses!.length }} {{ dept.courses!.length === 1 ? 'Course' : 'Courses' }}
             </span>
-            <span class="meta-dot" *ngIf="dept.courses?.length && dept.members?.length">Â·</span>
+            <span class="meta-dot" *ngIf="dept.courses?.length && dept.members?.length">·</span>
             <span *ngIf="dept.members?.length">
               <ion-icon name="people-outline"></ion-icon>
               {{ dept.members!.length }} {{ dept.members!.length === 1 ? 'Member' : 'Members' }}
@@ -126,7 +126,7 @@
           </div>
 
           <p class="dept-row-courses" *ngIf="dept.courses && dept.courses.length > 0">
-            {{ dept.courses.slice(0, 2).join(' Â· ') }}<span *ngIf="dept.courses.length > 2"> +{{ dept.courses.length - 2 }} more</span>
+            {{ dept.courses.slice(0, 2).join(' · ') }}<span *ngIf="dept.courses.length > 2"> +{{ dept.courses.length - 2 }} more</span>
           </p>
         </div>
 
@@ -346,7 +346,7 @@
             </div>
             <div class="ef-group">
               <label>Description</label>
-              <textarea [(ngModel)]="eventForm.description" placeholder="Detailsâ€¦" class="ef-input ef-textarea" rows="3"></textarea>
+              <textarea [(ngModel)]="eventForm.description" placeholder="Details" class="ef-input ef-textarea" rows="3"></textarea>
             </div>
             <div class="ef-row">
               <div class="ef-group">
@@ -432,7 +432,7 @@
               </div>
               <span class="capacity-label" [class.capacity-full-label]="isEventFull(event)">
                 {{ event.attendees?.length || 0 }}/{{ event.maxParticipants }}
-                <ng-container *ngIf="isEventFull(event)"> Â· Full</ng-container>
+                <ng-container *ngIf="isEventFull(event)"> · Full</ng-container>
               </span>
             </div>
             <div class="event-footer">
@@ -489,7 +489,7 @@
             <textarea
               class="wall-compose-input"
               [(ngModel)]="wallInput"
-              placeholder="Share something with the departmentâ€¦"
+              placeholder="Share something with the department"
               rows="2"
             ></textarea>
             <div class="wall-compose-actions">
@@ -522,7 +522,7 @@
 
         <div *ngIf="isLoadingWall" class="state-box compact-state">
           <ion-spinner color="primary"></ion-spinner>
-          <p>Loading postsâ€¦</p>
+          <p>Loading posts</p>
         </div>
 
         <div *ngIf="!isLoadingWall">
@@ -616,7 +616,7 @@
     <div class="dept-qr-body">
       <div class="dept-qr-generating" *ngIf="isGeneratingDeptQR">
         <ion-spinner name="crescent"></ion-spinner>
-        <p>Generating QRâ€¦</p>
+        <p>Generating QR</p>
       </div>
       <img *ngIf="!isGeneratingDeptQR && qrCodeDataUrl" [src]="qrCodeDataUrl" alt="Event QR Code" class="dept-qr-image" />
     </div>
@@ -657,7 +657,7 @@
     <div class="dept-qr-att-list" *ngIf="showAttendanceInModal">
       <div class="dept-qr-att-loading" *ngIf="isLoadingDeptAttendance">
         <ion-spinner name="crescent"></ion-spinner>
-        <span>Loading attendanceâ€¦</span>
+        <span>Loading attendance…</span>
       </div>
       <div class="dept-qr-att-empty" *ngIf="!isLoadingDeptAttendance && deptAttendanceList.length === 0">
         <ion-icon name="people-outline"></ion-icon>

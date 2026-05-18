@@ -1167,7 +1167,7 @@ export class AuthService {
     title: string; description: string; date: string; time: string;
     location: string; eventType: string; maxParticipants?: number | null;
     coverImageFile?: File; coverImageUrl?: string; coverImageFileName?: string;
-    eventCategory?: string; pointValue?: number;
+    eventCategory?: string; inspireCategory?: string; pointValue?: number;
   }): Promise<any> {
     try {
       const user = this.auth.currentUser;
@@ -1189,6 +1189,7 @@ export class AuthService {
         coverImageUrl,
         coverImageFileName: eventData.coverImageFileName || '',
         eventCategory: eventData.eventCategory || 'regular',
+        inspireCategory: eventData.inspireCategory || 'service',
         pointValue: eventData.pointValue ?? 10,
         attendees: [],
         createdBy: user?.uid || 'admin',

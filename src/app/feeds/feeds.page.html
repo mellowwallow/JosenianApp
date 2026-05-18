@@ -112,7 +112,7 @@
             <h4 class="feed-event-title">{{ ev.title }}</h4>
             <p class="feed-event-meta">
               <ion-icon name="calendar-outline"></ion-icon>
-              {{ formatEventDate(ev) }}<span *ngIf="ev.time"> Â· {{ formatEventTime(ev) }}</span>
+              {{ formatEventDate(ev) }}<span *ngIf="ev.time"> · {{ formatEventTime(ev) }}</span>
             </p>
             <p class="feed-event-meta" *ngIf="ev.location">
               <ion-icon name="location-outline"></ion-icon>
@@ -133,7 +133,7 @@
                         [disabled]="joiningEventId === ev.id || (isFull(ev) && !isAttending(ev))">
                   <ion-spinner name="crescent" *ngIf="joiningEventId === ev.id" style="width:14px;height:14px;"></ion-spinner>
                   <span *ngIf="joiningEventId !== ev.id">
-                    {{ isAttending(ev) ? 'âœ“ Joined' : (isFull(ev) ? 'Full' : 'Join') }}
+                    {{ isAttending(ev) ? '✓ Joined' : (isFull(ev) ? 'Full' : 'Join') }}
                   </span>
                 </button>
                 <button class="feed-scan-btn"
@@ -256,7 +256,7 @@
 
             <div class="comments-loading" *ngIf="loadingComments === item.post.id">
               <ion-spinner name="crescent" style="width:18px;height:18px;"></ion-spinner>
-              <span>Loading commentsâ€¦</span>
+              <span>Loading comments…</span>
             </div>
 
             <ng-container *ngIf="loadingComments !== item.post.id">
@@ -288,7 +288,7 @@
               <input
                 type="text"
                 class="comment-input"
-                placeholder="Write a commentâ€¦"
+                placeholder="Write a comment…"
                 [(ngModel)]="commentInputs[item.post.id!]"
                 (keyup.enter)="submitComment(item.post, item.user.uid, $event)"
               />

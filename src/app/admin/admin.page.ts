@@ -107,7 +107,7 @@ export class AdminPage implements OnInit {
     coverImageBase64: '',
     coverImageUrl: '',
     coverImageFileName: '',
-    eventCategory: 'regular', pointValue: 10,
+    pointValue: 10,
     inspireCategory: 'service'
   };
 
@@ -987,7 +987,7 @@ export class AdminPage implements OnInit {
       endDate: '', endTime: '',
       location: '', eventType: 'global', maxParticipants: '',
       coverImageBase64: '', coverImageUrl: '', coverImageFileName: '',
-      eventCategory: 'regular', pointValue: 10,
+      pointValue: 10,
       inspireCategory: 'service'
     };
     this.coverImageFile = null;
@@ -1057,7 +1057,7 @@ export class AdminPage implements OnInit {
         eventType: this.newEvent.eventType,
         maxParticipants: this.newEvent.maxParticipants ? Number(this.newEvent.maxParticipants) : null,
         coverImageFileName: this.newEvent.coverImageFileName,
-        eventCategory: this.newEvent.eventCategory,
+        inspireCategory: this.newEvent.inspireCategory,
         pointValue: this.newEvent.pointValue
       };
       if (this.coverImageFile) {
@@ -1097,7 +1097,6 @@ export class AdminPage implements OnInit {
       coverImageBase64: '',
       coverImageUrl: ev.coverImageUrl || '',
       coverImageFileName: ev.coverImageFileName || '',
-      eventCategory: ev.eventCategory || 'regular',
       pointValue: ev.pointValue ?? 10,
       inspireCategory: ev.inspireCategory || 'service'
     };
@@ -1271,10 +1270,6 @@ export class AdminPage implements OnInit {
 
   leaderboard: any[] = [];
   isLoadingLeaderboard: boolean = false;
-
-  onEventCategoryChange() {
-    this.newEvent.pointValue = this.authService.getDefaultPoints(this.newEvent.eventCategory);
-  }
 
 
   async loadLeaderboard() {

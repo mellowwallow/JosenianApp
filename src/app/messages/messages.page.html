@@ -11,7 +11,7 @@
   <ion-toolbar class="search-toolbar">
     <ion-searchbar
       (ionChange)="onSearchChange($event)"
-      placeholder="Search friendsâ€¦"
+      placeholder="Search friends…"
       class="search-bar">
     </ion-searchbar>
   </ion-toolbar>
@@ -22,7 +22,7 @@
 
     <div class="loading-state" *ngIf="isLoading">
       <ion-spinner name="crescent"></ion-spinner>
-      <p>Loading conversationsâ€¦</p>
+      <p>Loading conversations…</p>
     </div>
 
     <div class="conversations-section" *ngIf="!isLoading && filteredItems.length > 0">

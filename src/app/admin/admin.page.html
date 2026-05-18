@@ -1176,34 +1176,23 @@
 
             <div class="form-row-inline">
               <div class="form-group">
-                <label class="form-label">Event Category <span class="points-badge-hint">affects points awarded</span></label>
-                <select [(ngModel)]="newEvent.eventCategory" (change)="onEventCategoryChange()" class="form-input">
-                  <option value="regular">Regular Event (+10 pts default)</option>
-                  <option value="special">Special Event (+20 pts default)</option>
-                  <option value="volunteer">Volunteer / Organizing (+30 pts default)</option>
-                </select>
-              </div>
-              <div class="form-group">
                 <label class="form-label">
                   Points Value
-                  <span class="points-badge-hint">customizable</span>
                 </label>
                 <input type="number" [(ngModel)]="newEvent.pointValue" class="form-input" min="0" max="999" />
               </div>
-            </div>
-
-            <div class="form-group">
-              <label class="form-label">INSPIRE Category</label>
-              <p class="form-hint">Points from attending this event count toward this INSPIRE letter.</p>
-              <select [(ngModel)]="newEvent.inspireCategory" class="form-input">
-                <option value="interiority">I -- Interiority</option>
-                <option value="nationalism">N -- Nationalism</option>
-                <option value="service">S -- Service</option>
-                <option value="pioneerism">P -- Pioneerism</option>
-                <option value="integrity">I -- Integrity</option>
-                <option value="reliability">R -- Reliability</option>
-                <option value="excellence">E -- Excellence</option>
-              </select>
+              <div class="form-group" style="flex: 0.5;">
+                <label class="form-label">INSPIRE Category</label>
+                <select [(ngModel)]="newEvent.inspireCategory" class="form-input">
+                  <option value="interiority">I -- Interiority</option>
+                  <option value="nationalism">N -- Nationalism</option>
+                  <option value="service">S -- Service</option>
+                  <option value="pioneerism">P -- Pioneerism</option>
+                  <option value="integrity">I -- Integrity</option>
+                  <option value="reliability">R -- Reliability</option>
+                  <option value="excellence">E -- Excellence</option>
+                </select>
+              </div>
             </div>
 
             <div class="form-group">
@@ -1258,7 +1247,7 @@
                 <p class="event-admin-meta">
                   <ion-icon name="calendar-outline"></ion-icon>
                   {{ formatEventDate(ev) }}
-                  <span *ngIf="ev.time"> Â· {{ formatEventTime(ev) }}</span>
+                  <span *ngIf="ev.time"> · {{ formatEventTime(ev) }}</span>
                 </p>
                 <p class="event-admin-meta" *ngIf="ev.location">
                   <ion-icon name="location-outline"></ion-icon>
@@ -1730,7 +1719,7 @@
             </div>
             <select class="att-event-select" [(ngModel)]="activeDashboardEventId" (change)="selectDashboardEvent(activeDashboardEventId)">
               <option value="">-- Choose an event to view attendance --</option>
-              <option *ngFor="let ev of events" [value]="ev.id">{{ ev.title }} Â· {{ formatEventDate(ev) }}</option>
+              <option *ngFor="let ev of events" [value]="ev.id">{{ ev.title }} · {{ formatEventDate(ev) }}</option>
             </select>
           </div>
 
@@ -1987,7 +1976,7 @@
 
     <p class="qr-validity-note" *ngIf="!isGeneratingQR">
       <ion-icon name="shield-checkmark-outline"></ion-icon>
-      Valid until {{ qrModalEvent?.endTime }} on {{ qrModalEvent?.endDate | date:'MMM d' }} Â· Registered users only
+      Valid until {{ qrModalEvent?.endTime }} on {{ qrModalEvent?.endDate | date:'MMM d' }} · Registered users only
     </p>
 
     <div class="qr-stats-row">

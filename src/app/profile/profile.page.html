@@ -310,7 +310,7 @@
             <div class="inspired-progress-track">
               <div class="inspired-progress-fill" [style.width.%]="getInspiredProgress(cat.key)" [style.background]="cat.color"></div>
             </div>
-            <span class="inspired-next">{{ getInspiredNextLabel(cat.key) }} Â· {{ inspiredPoints[cat.key] || 0 }} pts</span>
+            <span class="inspired-next">{{ getInspiredNextLabel(cat.key) }} · {{ inspiredPoints[cat.key] || 0 }} pts</span>
           </div>
         </div>
       </div>
@@ -720,7 +720,7 @@
           <div class="photo-action-icon green"><ion-icon name="image-outline"></ion-icon></div>
           <div class="photo-action-text">
             <span class="photo-action-title">{{ userProfile.photoUrl ? 'Change Photo' : 'Upload Photo' }}</span>
-            <span class="photo-action-sub">JPG, PNG, WebP Â· Max 5 MB</span>
+            <span class="photo-action-sub">JPG, PNG, WebP · Max 5 MB</span>
           </div>
           <ion-icon name="chevron-forward" class="photo-action-arrow"></ion-icon>
         </button>
