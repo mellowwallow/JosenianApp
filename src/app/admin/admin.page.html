@@ -90,7 +90,7 @@
 
     <main class="main-content">
       <header class="top-bar">
-        <h2 class="page-title">{{ activeTab === 'dashboard' ? 'Admin Dashboard' : activeTab === 'approval' ? 'Account Approval' : activeTab === 'departments' ? 'Departments & Courses' : activeTab === 'alumni' ? 'Alumni Management' : activeTab === 'events' ? 'Manage Events' : activeTab === 'attendance' ? 'Attendance Dashboard' : 'Alumni ID Verification' }}</h2>
+        <h2 class="page-title">{{ activeTab === 'dashboard' ? 'Admin Dashboard' : activeTab === 'approval' ? 'Account Approval' : activeTab === 'departments' ? 'Departments & Courses' : activeTab === 'alumni' ? 'Alumni Management' : activeTab === 'events' ? 'Manage Events' : activeTab === 'attendance' ? 'Attendance Dashboard' : activeTab === 'nominations' ? 'INSPIRE Nominations' : 'Alumni ID Verification' }}</h2>
         <button class="refresh-btn" (click)="refreshData()" [disabled]="isRefreshing" title="Refresh all data">
           <ion-icon name="refresh" [class.spinning]="isRefreshing"></ion-icon>
         </button>
@@ -1604,7 +1604,7 @@
 
               <div class="nom-field">
                 <label class="nom-label">Points to Award</label>
-                <input class="nom-input" type="number" min="1" max="100" [(ngModel)]="nominationForm.points" />
+                <input class="nom-input" type="number" min="1" max="100" step="1" [(ngModel)]="nominationForm.points" (ngModelChange)="clampNominationPoints()" />
               </div>
 
               <div class="nom-field">

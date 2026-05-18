@@ -1541,6 +1541,7 @@ export class AdminPage implements OnInit {
   }
 
   async submitNomination() {
+    this.clampNominationPoints();
     if (!this.nominationTarget) {
       await this.showAlert('Missing Info', 'Please select a user to nominate.');
       return;
@@ -1575,6 +1576,19 @@ export class AdminPage implements OnInit {
     } finally {
       this.isSubmittingNomination = false;
     }
+  }
+
+  clampNominationPoints() {
+    const value = Number(this.nominationForm.points);
+    if (isNaN(value) || value < 1) {
+      this.nominationForm.points = 1;
+      return;
+    }
+    if (value > 100) {
+      this.nominationForm.points = 100;
+      return;
+    }
+    this.nominationForm.points = value;
   }
 
   getNominationCategoryLabel(key: string): string {
