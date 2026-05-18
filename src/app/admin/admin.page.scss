@@ -5662,6 +5662,13 @@ $bg-light: #f3f4f6;
   ion-icon { font-size: 15px; }
   &:hover { background: #1f2937; }
   &:active { opacity: .85; }
+  &:disabled {
+    background: #d1d5db;
+    color: #6b7280;
+    cursor: not-allowed;
+    opacity: 0.7;
+    &:hover { background: #d1d5db; }
+  }
 }
 
 .attendance-stat-chip {

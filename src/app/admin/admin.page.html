@@ -1157,6 +1157,17 @@
               </div>
             </div>
 
+            <div class="form-row-inline">
+              <div class="form-group">
+                <label class="form-label">End Date <span class="required">*</span></label>
+                <input type="date" [(ngModel)]="newEvent.endDate" [min]="newEvent.date || todayDate" class="form-input" />
+              </div>
+              <div class="form-group">
+                <label class="form-label">End Time <span class="required">*</span></label>
+                <input type="time" [(ngModel)]="newEvent.endTime" class="form-input" />
+              </div>
+            </div>
+
             <div class="form-group">
               <label class="form-label">Location <span class="required">*</span></label>
               <input type="text" [(ngModel)]="newEvent.location" placeholder="e.g. USJ-R Gymnasium" class="form-input" />
@@ -1292,9 +1303,9 @@
                 </p>
 
                 <div class="qr-action-row">
-                  <button class="btn-show-qr" (click)="showEventQR(ev)">
+                  <button class="btn-show-qr" (click)="showEventQR(ev)" [disabled]="!isQRCodeAvailable(ev)" [title]="!isQRCodeAvailable(ev) ? 'QR code expired after event end time' : 'Generate QR code for check-in'">
                     <ion-icon name="qr-code-outline"></ion-icon>
-                    Show QR Code
+                    {{ !isQRCodeAvailable(ev) ? 'QR Expired' : 'Show QR Code' }}
                   </button>
                   <span class="attendance-stat-chip" *ngIf="ev.attendanceCount">
                     <ion-icon name="checkmark-circle-outline"></ion-icon>
@@ -1969,7 +1980,11 @@
       </span>
       <span *ngIf="qrModalEvent?.time">
         <ion-icon name="time-outline"></ion-icon>
-        {{ formatEventTime(qrModalEvent) }}
+        {{ formatEventTime(qrModalEvent) }} - {{ formatEventTime({time: qrModalEvent?.endTime}) }}
+      </span>
+      <span *ngIf="qrModalEvent?.endDate && qrModalEvent?.endDate !== qrModalEvent?.date">
+        <ion-icon name="calendar-outline"></ion-icon>
+        Ends: {{ qrModalEvent?.endDate | date:'MMM d' }}
       </span>
       <span *ngIf="qrModalEvent?.location">
         <ion-icon name="location-outline"></ion-icon>
@@ -1987,7 +2002,7 @@
 
     <p class="qr-validity-note" *ngIf="!isGeneratingQR">
       <ion-icon name="shield-checkmark-outline"></ion-icon>
-      Valid only on the event date Â· Registered users only
+      Valid until {{ qrModalEvent?.endTime }} on {{ qrModalEvent?.endDate | date:'MMM d' }} Â· Registered users only
     </p>
 
     <div class="qr-stats-row">

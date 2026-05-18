@@ -102,6 +102,7 @@ export class AdminPage implements OnInit {
   selectedEvent: any = null;
   newEvent = {
     title: '', description: '', date: '', time: '',
+    endDate: '', endTime: '',
     location: '', eventType: 'global', maxParticipants: '',
     coverImageBase64: '',
     coverImageUrl: '',
@@ -983,6 +984,7 @@ export class AdminPage implements OnInit {
   resetEventForm() {
     this.newEvent = {
       title: '', description: '', date: '', time: '',
+      endDate: '', endTime: '',
       location: '', eventType: 'global', maxParticipants: '',
       coverImageBase64: '', coverImageUrl: '', coverImageFileName: '',
       eventCategory: 'regular', pointValue: 10,
@@ -1022,11 +1024,26 @@ export class AdminPage implements OnInit {
       await this.showAlert('Invalid Date', 'Event date cannot be in the past.');
       return;
     }
-    const { title, description, date, location } = this.newEvent;
-    if (!title.trim() || !description.trim() || !date || !location.trim()) {
-      await this.showAlert('Required', 'Please fill in Title, Description, Date, and Location.');
+    const { title, description, date, location, endDate, endTime } = this.newEvent;
+    if (!title.trim() || !description.trim() || !date || !location.trim() || !endDate || !endTime) {
+      await this.showAlert('Required', 'Please fill in Title, Description, Date, Location, End Date, and End Time.');
       return;
     }
+    
+    // Validate end date is not before start date
+    if (endDate < date) {
+      await this.showAlert('Invalid End Date', 'Event end date cannot be before the start date.');
+      return;
+    }
+    
+    // If same date, validate end time is after start time
+    if (endDate === date && this.newEvent.time) {
+      if (endTime <= this.newEvent.time) {
+        await this.showAlert('Invalid End Time', 'Event end time must be after the start time.');
+        return;
+      }
+    }
+    
     this.isSubmittingEvent = true;
     try {
       const payload: any = {
@@ -1034,6 +1051,8 @@ export class AdminPage implements OnInit {
         description: this.newEvent.description.trim(),
         date: this.newEvent.date,
         time: this.newEvent.time,
+        endDate: this.newEvent.endDate,
+        endTime: this.newEvent.endTime,
         location: this.newEvent.location.trim(),
         eventType: this.newEvent.eventType,
         maxParticipants: this.newEvent.maxParticipants ? Number(this.newEvent.maxParticipants) : null,
@@ -1070,6 +1089,8 @@ export class AdminPage implements OnInit {
       description: ev.description || '',
       date: ev.date || '',
       time: ev.time || '',
+      endDate: ev.endDate || '',
+      endTime: ev.endTime || '',
       location: ev.location || '',
       eventType: ev.eventType || 'global',
       maxParticipants: ev.maxParticipants || '',
@@ -1154,6 +1175,12 @@ export class AdminPage implements OnInit {
   isEventPast(event: any): boolean {
     if (!event.date) return false;
     return new Date(`${event.date}T${event.time || '23:59'}`) < new Date();
+  }
+
+  isQRCodeAvailable(event: any): boolean {
+    if (!event.endDate || !event.endTime) return true; // Allow QR if no end time set
+    const eventEndDateTime = new Date(`${event.endDate}T${event.endTime}`);
+    return new Date() < eventEndDateTime;
   }
 
   async showEventQR(event: any) {
