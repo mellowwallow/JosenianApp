@@ -1068,21 +1068,6 @@
                   </button>
                 </div>
 
-                <div class="points-mgmt-section" *ngIf="selectedAlumni.source === 'registered'">
-                  <h4 class="points-mgmt-title">
-                    <ion-icon name="star-outline"></ion-icon>
-                    Points Adjustment
-                  </h4>
-                  <p class="points-mgmt-current">Current: <strong>{{ selectedAlumni.totalPoints || 0 }} pts</strong></p>
-                  <div class="points-mgmt-form">
-                    <input type="number" [(ngModel)]="adjustPointsAmount" placeholder="Amount (e.g. -5 or +20)" class="form-input pts-input" />
-                    <input type="text" [(ngModel)]="adjustPointsReason" placeholder="Reason for adjustment" class="form-input pts-input" />
-                    <button class="btn btn-primary btn-sm" (click)="adjustUserPoints(selectedAlumni.id)">
-                      <ion-icon name="checkmark"></ion-icon>
-                      Apply
-                    </button>
-                  </div>
-                </div>
 
                 <div class="action-buttons">
                   <button class="btn btn-edit" *ngIf="selectedAlumni.source === 'manual'" (click)="editAlumni(selectedAlumni.id)">

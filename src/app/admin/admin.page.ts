@@ -1269,9 +1269,6 @@ export class AdminPage implements OnInit {
     });
   }
 
-  adjustPointsUserId: string = '';
-  adjustPointsAmount: number = 0;
-  adjustPointsReason: string = '';
   leaderboard: any[] = [];
   isLoadingLeaderboard: boolean = false;
 
@@ -1279,20 +1276,6 @@ export class AdminPage implements OnInit {
     this.newEvent.pointValue = this.authService.getDefaultPoints(this.newEvent.eventCategory);
   }
 
-  async adjustUserPoints(userId: string) {
-    if (!this.adjustPointsAmount || !this.adjustPointsReason.trim()) {
-      await this.showAlert('Required', 'Enter both an amount and a reason.');
-      return;
-    }
-    try {
-      await this.authService.adminAdjustPoints(userId, this.adjustPointsAmount, this.adjustPointsReason);
-      this.adjustPointsAmount = 0;
-      this.adjustPointsReason = '';
-      await this.showAlert('Done', `Points adjusted by ${this.adjustPointsAmount > 0 ? '+' : ''}${this.adjustPointsAmount}.`);
-    } catch {
-      await this.showAlert('Error', 'Failed to adjust points.');
-    }
-  }
 
   async loadLeaderboard() {
     this.isLoadingLeaderboard = true;
